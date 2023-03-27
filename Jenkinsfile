@@ -5,9 +5,7 @@ pipeline {
 
             stage('Building Docker Image') {
                 steps {
-                    script {
-                        dockerImage = docker.build + ":$BUILD_NUMBER"
-                    }
+                    sh 'docker build -t gauravmathur/test-k8s:v2 .'
                 }
             }
 
