@@ -3,11 +3,12 @@ pipeline {
     stages {
 
 
-            stage('Building Docker Image') {
-                steps {
-                    sh 'docker build -t gauravmathur/test-k8s:v2 .'
-                }
-            }
+            stage('Docker Build') {
+                agent any
+                 steps {
+                sh 'docker build -t shanem/spring-petclinic:latest .'
+              }
+             }
 
            
         }
