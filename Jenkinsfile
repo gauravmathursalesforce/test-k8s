@@ -26,15 +26,15 @@ pipeline {
                 }
             }
         }
-        stage('Image push to Artifactory') {
-            steps {
-                script {
-                         docker.withRegistry( '', registryCredential ) {
-                            dockerImage.push()
-                        }
-                     }
-                }
-         }
+        // stage('Image push to Artifactory') {
+        //     steps {
+        //         script {
+        //                  docker.withRegistry( '', registryCredential ) {
+        //                     dockerImage.push()
+        //                 }
+        //              }
+        //         }
+        //  }
         // stage('Deploy to k8s') {
         //     steps {
         //                withKubeConfig([credentialsId: 'kubeconfig']) {
