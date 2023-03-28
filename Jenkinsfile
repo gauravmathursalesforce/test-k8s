@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh 'docker stop $(docker ps -a -q)'
                 script {
-                    dockerImage.run("-p 8080:3000")
+                    dockerImage.run("-p 3000:3000")
                 }
             }
         }
