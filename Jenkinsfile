@@ -13,8 +13,8 @@ pipeline {
             steps {
                 script {
                      sh 'echo printenv'
-                     sh 'echo ' ":${VERSION}"
-                     dockerImage = docker.build 
+                    
+                     //dockerImage = docker.build "${DOCKER_REGISTRY}" + ":${VERSION}"
                 }
             }
         }
