@@ -14,27 +14,27 @@ pipeline {
                 script {
                      sh 'echo printenv'
                     
-                     dockerImage = docker.build "${DOCKER_REGISTRY}" 
+                     dockerImage = docker.build "${DOCKER_REGISTRY}" + ":${VERSION}"
                 }
             }
         }
-        // stage('Docker Run') {
-        //     steps {
-        //         sh 'docker stop $(docker ps -a -q)'
-        //         script {
-        //             dockerImage.run("-p 8081:80")
-        //         }
-        //     }
-        // }
-        // stage('Image push to Artifactory') {
-        //     steps {
-        //         script {
-        //                  docker.withRegistry( '', registryCredential ) {
-        //                     dockerImage.push()
-        //                 }
-        //              }
-        //         }
-        //  }
+        stage('Docker Run') {
+            steps {
+                sh 'docker stop $(docker ps -a -q)'
+                script {
+                    dockerImage.run("-p 8080:3000")
+                }
+            }
+        }
+        stage('Image push to Artifactory') {
+            steps {
+                script {
+                         docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                        }
+                     }
+                }
+         }
         // stage('Deploy to k8s') {
         //     steps {
         //                withKubeConfig([credentialsId: 'kubeconfig']) {
