@@ -14,7 +14,7 @@ pipeline {
                 script {
                      sh 'echo printenv'
                     
-                     //dockerImage = docker.build "${DOCKER_REGISTRY}" + ":${VERSION}"
+                     dockerImage = docker.build "${DOCKER_REGISTRY}" 
                 }
             }
         }
